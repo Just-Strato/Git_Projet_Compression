@@ -40,5 +40,5 @@ unsigned int findWord(const char* word);
 */
 unsigned int addWord(const char* word);
 
-/**/
+
 #endif
