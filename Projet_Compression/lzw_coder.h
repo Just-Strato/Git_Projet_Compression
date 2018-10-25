@@ -7,6 +7,8 @@
 
 #include"stdio.h"
 
+#define NOT_INSIDE -1
+
 /**
 * @struct Dictionary_t
 * @brief Dictionnaire de mots
@@ -17,22 +19,26 @@
 *tableau de pointeur
 */
 typedef struct {
-	char** word;
-	int size;
+	const char** _words;
+	unsigned int _size=0;
 }Dictionary_t;
 
 /**
-*@struct List_t
-*@brief Liste de code
+*@brief cherche la chaine dans le dictionnaire
 *
-*List_t est un objet comportant un code
-*et un pointeur sur un suivant du meme type. 
-*C'est une liste..
+*@param const char* str la chaine a chercher
+*@return l'indice de l'element sinon NOT_INSIDE
 */
-typedef struct List_t{
-	int code;
-	List_t * next;
-}List_t;
+unsigned int findWord(const char* word);
 
+/**
+*@brief Ajoute la chaine au dictionnaire 
+*si le tableau n'est pas complet, sinon n'ajoute plus
+*
+*@param char* word la chaine a ajouter
+*@return l'indice de l'element ajoute sinon NOT_INSIDE
+*/
+unsigned int addWord(const char* word);
 
+/**/
 #endif
