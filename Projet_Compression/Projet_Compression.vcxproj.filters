@@ -26,7 +26,7 @@
     <ClInclude Include="lzw_coder.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="code_list.h">
+    <ClInclude Include="code_array.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

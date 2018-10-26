@@ -67,7 +67,7 @@ int addWord(Dictionary_t* diry, const char* word);
 *@param Dictionary_t* diry le dictionnaire a  resume
 @return une chaine contenant le resume
 */
-const char* summaryDiry(const Dictionary_t* diry);
+char* summaryDiry(const Dictionary_t* diry);
 
 /**
 *@brief complete le dictionnaire et renvoit un tableau de code
@@ -103,7 +103,7 @@ int findOrAddDiry(Dictionary_t* diry, char* word, char c);
 *
 *@return le message obtenu du tableau de code
 */
-const char* lzwDecoder(const CodeArray_t* codeArray, Dictionary_t* diry = NULL);
+char* lzwDecoder(const CodeArray_t* codeArray, Dictionary_t* diry = NULL);
 
 
 #endif

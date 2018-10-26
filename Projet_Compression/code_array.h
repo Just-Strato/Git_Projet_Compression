@@ -19,5 +19,15 @@ typedef struct CodeArray_t {
 	int size;
 }CodeArray_t;
 
+/**
+*@brief resume les codes dans codeArray
+*
+*@param const CodeArray_t* codeArray le tableau a resume
+*@return une chaine avec le resume
+*/
+char* summaryCodeArray(const CodeArray_t* codeArray);
+
+/**
+/
 
 #endif
