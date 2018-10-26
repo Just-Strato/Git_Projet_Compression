@@ -73,12 +73,13 @@ const char* summaryDiry(const Dictionary_t* diry);
 *@brief complete le dictionnaire et renvoit un tableau de code
 *realise celon le principe du codeur LZW
 *
-*@param Dictionary_t* diry le dictionnaire a remplir
 *@param const char* msg le message a code
+*@param Dictionary_t* diry le dictionnaire a remplir
+*Si le dictionnaire n'est pas precise, l'initialise a l"interieur et le libere
 *
 *@return la liste de code realise
 */
-CodeArray_t* lzw_coder(Dictionary_t* diry, const char* msg);
+CodeArray_t* lzwCoder(const char* msg, Dictionary_t* diry = NULL);
 
 /**
 *@brief si la chaine avec le caractere est dans le dico on passe
@@ -91,5 +92,18 @@ CodeArray_t* lzw_coder(Dictionary_t* diry, const char* msg);
 *@return l'indice du message si ajouter dans le dictionnaire, sinon NOT_INSIDE
 */
 int findOrAddDiry(Dictionary_t* diry, char* word, char c);
+
+/**
+*@brief complete le dictionnaire et renvoit le message decode
+*a partir de codeArray en suivant le principe du decodeur LZW
+*
+*@param const CodeArray_t* codeArray le tableau de code a decoder
+*@param Dictionary_t* diry le dictionnaire a remplir
+*si le dictionnaire n'est pas precise, l'initialise a l'interieur et le libere
+*
+*@return le message obtenu du tableau de code
+*/
+const char* lzwDecoder(const CodeArray_t* codeArray, Dictionary_t* diry = NULL);
+
 
 #endif
