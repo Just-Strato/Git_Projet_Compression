@@ -16,7 +16,7 @@
 */
 typedef struct CodeArray_t {
 	int *codes;
-	int size;
+	unsigned int size;
 }CodeArray_t;
 
 /**
@@ -26,8 +26,5 @@ typedef struct CodeArray_t {
 *@return une chaine avec le resume
 */
 char* summaryCodeArray(const CodeArray_t* codeArray);
-
-/**
-/
 
 #endif
