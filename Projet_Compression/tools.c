@@ -1,7 +1,7 @@
 #include "global.h"
 
-void afficher_octet(
-	const t_octet Oc ,
+void displayByte(
+	const Byte_t Oc ,
 	const char * ident ,
 	const int mode ) {
   static char buffer[8];
@@ -9,7 +9,7 @@ void afficher_octet(
 
   printf( "%s = 0b" , ident );
   for( n = 0 ; n < 8 ; n++ ) {
-    t_octet bit = (1 << n);
+    Byte_t bit = (1 << n);
     buffer[7-n] = ((Oc & bit) ? '1' : '0');
   }
   printf( "%s" , buffer );
@@ -18,7 +18,7 @@ void afficher_octet(
   printf( "\n" );
 }
 
-t_octet lire_octet() {
+Byte_t readByte() {
   int c;
 
   printf( "un octet : " );
@@ -27,64 +27,64 @@ t_octet lire_octet() {
   // les seules valeurs possibles pour un octet
   assert( -1 < c && c < 256 );
 
-  return (t_octet) c;
+  return (Byte_t) c;
 }
 
-int extraire_bit( const t_octet Oc , const int n ) {
+int extractBit( const Byte_t Oc , const int n ) {
   assert( -1 < n && n < 8 );
 
-  t_octet Dn = (1 << n);
+  Byte_t Dn = (1 << n);
 
   return ((Oc & Dn) ? 1 : 0);
 }
 
-t_octet modifier_bit( const t_octet Oc , const int n ) {
+Byte_t editBit( const Byte_t Oc , const int n ) {
   assert( -1 < n && n < 8 );
 
-  t_octet Dn = (1 << n);
+  Byte_t Dn = (1 << n);
 
   return (Oc ^ Dn);
 }
 
-t_octet lire_quartetInf( t_octet O ) {
-	static t_octet masque = 0b00001111;
+Byte_t readLowQuartet( Byte_t O ) {
+	static Byte_t masque = 0b00001111;
 
 	return (O & masque);
 }
 
-t_octet lire_quartetSup( t_octet O ) {
+Byte_t readUpQuartet( Byte_t O ) {
 	static unsigned int offset = 0b00001111;
 
 	return ((O | offset) - offset);
 }
 
-t_octet ecrire_quartetInf( t_octet O, t_octet qi ) {
-		return ((O-lire_quartetInf(O))|lire_quartetInf(qi));
+Byte_t writeLowQuartet( Byte_t O, Byte_t qi ) {
+		return ((O-readLowQuartet(O))|readLowQuartet(qi));
 }
 
-t_octet ecrire_quartetSup( t_octet O, t_octet qs ) {
-        return ((O-lire_quartetSup(O))|lire_quartetSup(qs));
+Byte_t writeUpQuartet( Byte_t O, Byte_t qs ) {
+        return ((O-readUpQuartet(O))|readUpQuartet(qs));
 }
 
-void ecrireTroisOctets(t_octet *a, t_octet *b, t_octet *c, int x, int y)
+void ecrireTroisOctets(Byte_t *a, Byte_t *b, Byte_t *c, int x, int y)
 {
 	*a = x >> 4;
-	*b = ecrire_quartetSup(*b, x << 4);
-	*b = ecrire_quartetInf(*b, y >> 8);
+	*b = writeUpQuartet(*b, x << 4);
+	*b = writeLowQuartet(*b, y >> 8);
 	*c = y ;
 }
 
-void lireTroisOctets(t_octet a, t_octet b, t_octet c, int *x, int *y)
+void lireTroisOctets(Byte_t a, Byte_t b, Byte_t c, int *x, int *y)
 {
     *x=0;
 	*x = a;
 	*x = *x << 4;
-	*x = (*x-lire_quartetInf(*x))|ecrire_quartetInf(*x, b>>4);
+	*x = (*x-readLowQuartet(*x))|writeLowQuartet(*x, b>>4);
 	*y=0;
-	*y = ecrire_quartetInf(*y, b);
+	*y = writeLowQuartet(*y, b);
 	*y = *y << 8;
-	*y = (*y-lire_quartetSup(*y))|ecrire_quartetSup(*y, c);
-	*y = (*y-lire_quartetInf(*y))|ecrire_quartetInf(*y, c);
+	*y = (*y-readUpQuartet(*y))|writeUpQuartet(*y, c);
+	*y = (*y-readLowQuartet(*y))|writeLowQuartet(*y, c);
 }
 
 T_TriplesOctet* compresserCode(const t_Code* code2)
@@ -130,14 +130,14 @@ void freeTabTriplesOctet(T_TriplesOctet *x) {
     free(x);
 }
 
-t_octet cryptageDecryptageXOR(t_octet octet, t_octet clef) {
+Byte_t cryptageDecryptageXOR(Byte_t octet, Byte_t clef) {
 
     /*La clef doit impérativement être supérieur à 0
     et inférieur à 256*/
     return octet ^ clef;
 }
 
-void cryptageDecryptageTripletOctet(T_TriplesOctet *tabOctet, t_octet clef) {
+void cryptageDecryptageTripletOctet(T_TriplesOctet *tabOctet, Byte_t clef) {
     //On chiffre/dechiffre chaques triplés de chaque tableaux du tableau dans tabOctet
     assert(clef <= 0b11111111 && clef >= 0b00000000);
     for(int k=0;k<tabOctet->n;k++) {

@@ -118,6 +118,7 @@
     <ClCompile Include="tools.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bytes.h" />
     <ClInclude Include="code_array.h" />
     <ClInclude Include="lzw_coder.h" />
     <ClInclude Include="global.h" />

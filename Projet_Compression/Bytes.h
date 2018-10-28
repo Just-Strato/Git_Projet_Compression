@@ -1,5 +1,6 @@
-#pragma once
-
+#ifndef DEF_BYTE
+#define DEF_BYTE
+#include "code_array.h"
 
 /**
 *byte type definition
@@ -11,7 +12,7 @@ typedef unsigned char Byte_t;
 *definition du type triple d'octet
 *
 */
-typedef Byte_t byteTriplet_t[3];
+typedef Byte_t ByteTriplet_t[3];
 
 /**
 * @struct BytesTripletArray_t
@@ -21,9 +22,9 @@ typedef Byte_t byteTriplet_t[3];
 *triple d'octet dans array 
 */
 typedef struct {
-	byteTriplet_t *array;
+	ByteTriplet_t *array;
 	unsigned int size;
-}BytesTripletArray_t;
+}ByteTripletArray_t;
 
 /**
  * signature des fonctions bit à bit
@@ -45,79 +46,79 @@ void displayByte(
  * @brief lire un octet en s'assurant que sa valeur soit bien comprise
  * entre les valeurs 0 et 255 incluses
  */
-Byte_t lire_octet();
+Byte_t readByte();
 
 
 /**
  * @brief extraire la valeur du n^{ième} bit de l'octet Oc
  * avec n comprise entre 0 et 7
  */
-int extraire_bit(const Byte_t Oc, const int n);
+int extractBit(const Byte_t Oc, const int n);
 
 
 /**
  * @brief modifier la valeur du n^{ième} bit de l'octet OC
  * avec n compris entre 0 et 7
  */
-Byte_t modifier_bit(const Byte_t Oc, const int n);
+Byte_t editBit(const Byte_t Oc, const int n);
 
 /**
  *
  * @brief extraire les valeurs des 4 bits de poids faible de l'octet Oc
  */
-Byte_t lire_quartetInf(Byte_t O);
+Byte_t readLowQuartet(Byte_t O);
 
 /**
  *
  * @brief extraire les valeurs des 4 bits de poids fort de l'octet Oc
  */
-Byte_t lire_quartetSup(Byte_t O);
+Byte_t readUpQuartet(Byte_t O);
 
 /**
  *
  * @brief modifier les valeurs des 4 bits de poids faible de l'octet Oc
  */
-Byte_t ecrire_quartetInf(Byte_t O, Byte_t qi);
+Byte_t writeLowQuartet(Byte_t O, Byte_t qi);
 
 /**
  *
  * @brief modifier les valeurs des 4 bits de poids fort de l'octet Oc
  */
-Byte_t ecrire_quartetSup(Byte_t O, Byte_t qs);
+Byte_t writeUpQuartet(Byte_t O, Byte_t qs);
 
 /**
 *
 * @brief ecrire x dans la moitie superieur de b et le reste dans a, puis y dans la
 * moitie inferieur de b et le reste dans c
 */
-void ecrire_troisOctets(Byte_t *a, Byte_t *b, Byte_t *c, int x, int y);
+void writeByteTriplet(Byte_t *a, Byte_t *b, Byte_t *c, int x, int y);
 
 /**
 *
 * @brief ecrire dans x et y deux entier recuperés dans a et quartet superieur de b,
 * et dans quartet inferieur de b et c
 */
-void recuperer_troisOctets(Byte_t a, Byte_t b, Byte_t c, int *x, int *y);
+void recoverByteTriplet(Byte_t a, Byte_t b, Byte_t c, int *x, int *y);
 
 /**
 *
 *@brief ecrire par deux les entiers du tableau dans
 *code sur 3 octets et retourne le tableau d'octets tabTripless
 */
-T_TriplesOctet* compresserCode(const t_Code* code);
+ByteTripletArray_t* compressCode(const CodeArray_t* code);
 
 /**
 *
 *@brief retourne un t_code avec les valeurs compressees
 * dans tabTriples
 */
-t_Code* decompresserCode(T_TriplesOctet *tabTriples);
+CodeArray_t* uncompressCode(ByteTripletArray_t *tabTriples);
 
 /**
 *
 *@brief liberer la mémoire alloué d'un T_Triples Octet
 */
-void freeTabTriplesOctet(T_TriplesOctet *x);
+void releaseByteTripletArray(ByteTripletArray_t *ary);
 
 /**
 *
@@ -129,6 +130,6 @@ Byte_t cryptageDecryptageXOR(Byte_t octet, Byte_t clef);
 /**
 *@brief chiffre ou dechiffrechaque octet d'un T_TriplesOctet avec XOR
 */
-void cryptageDecryptageTripletOctet(T_TriplesOctet *tabOctet, Byte_t clef);
+void encryDecryByteTripletArray(ByteTripletArray_t *tabOctet, Byte_t clef);
 
 #endif
