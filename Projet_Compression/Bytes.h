@@ -1,6 +1,6 @@
 #ifndef DEF_BYTE
 #define DEF_BYTE
-#include "code_array.h"
+#include "global.h"
 
 /**
 *byte type definition
@@ -22,13 +22,9 @@ typedef Byte_t ByteTriplet_t[3];
 *triple d'octet dans array 
 */
 typedef struct {
-	ByteTriplet_t *array;
+	ByteTriplet_t* array;
 	unsigned int size;
 }ByteTripletArray_t;
-
-/**
- * signature des fonctions bit à bit
- */
 
  /**
   * @brief afficher un octet au format binaire
@@ -39,7 +35,7 @@ typedef struct {
   */
 void displayByte(
 	const Byte_t Oc,
-	const char *ident,
+	const char* ident,
 	const int mode);
 
 /**

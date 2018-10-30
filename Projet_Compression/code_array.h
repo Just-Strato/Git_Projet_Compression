@@ -15,8 +15,8 @@
 *pour recevoir un tableau de size entier
 */
 typedef struct CodeArray_t {
-	int *codes;
-	unsigned int size;
+	int* _codes;
+	unsigned int _size;
 }CodeArray_t;
 
 /**
