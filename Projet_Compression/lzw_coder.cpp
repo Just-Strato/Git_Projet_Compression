@@ -89,3 +89,97 @@ char* summarydiary(const Dictionary_t* diary) {
 
 	return sary;
 }
+
+CodeArray_t* lzwCoder(Dictionary_t* diary, const char* msg) {
+
+	int unsigned code = 0, k, lgth, msgSize = strlen(msg);
+
+
+	CodeArray_t* caray = allocateCodeArray(); assert(caray != NULL);
+
+	/** Dans le pire des cas s atteindra la taille 
+			du nombre de motdans le dico*/
+	char c, s[DIARY_MAX_SIZE] = "\0";
+
+	for (k = 0; k < msgSize; k++) {
+		c = msg[k];
+		lgth = strlen(s);
+
+		//S=S+C
+		s[lgth] = c;
+		s[lgth + 1] = '\0';
+
+		if (findWord(diary, s) == NOT_INSIDE) {
+			addWord(diary, s);
+
+			//retirer C
+			s[lgth] = '\0';
+
+			//on recupère le code de S
+			if (strcmp(s, ""))
+				caray->codes[caray->size++] = findWord(diary, s);
+
+			//S devient C
+			s[0] = c;
+			s[1] = '\0';
+
+		}
+	}
+
+	if (strcmp(s, ""))
+		caray->codes[caray->size++] = findWord(diary, s);
+
+	return caray;
+
+}
+
+int findOrAddWord(Dictionary_t* diary, char* word, char c) {
+
+	int i, size = strlen(word);
+
+	word[size] = c;
+	word[size + 1] = '\0';
+
+	if (findWord(diary, word) == NOT_INSIDE) {
+
+		//On ajoute S+C au dico
+		i = addWord(diary, word);
+
+		//S devient c
+		word[0] = c;
+		word[1] = '\0';
+
+		return i;
+	}
+	
+	return NOT_INSIDE;
+}
+
+void lzwDecoder(Dictionary_t* diary, const CodeArray_t* caray) {
+
+	char* word;
+	char s[DIARY_MAX_SIZE] = "\0";
+	unsigned int c, k, i, lgth = 0;
+
+	for (k = 0; k < caray->size; k++) {
+
+		c = caray->codes[k];
+
+		if (c < 256) {
+			printf("%c", c);
+			findOrAddWord(diary, s, c);
+			lgth++;
+		}
+
+		else {
+			word = diary->words[c - 256];
+			lgth += strlen(word);
+
+			for (i = 0; i < strlen(word); i++) {
+				printf("%c", word[i]);
+				findOrAddWord(diary, s, word[i]);
+			}
+		}
+	}
+	printf("\nMessage Original de longueur %d\n", lgth);
+}

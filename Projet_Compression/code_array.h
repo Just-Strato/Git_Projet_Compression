@@ -15,9 +15,23 @@
 *pour recevoir un tableau de size entier
 */
 typedef struct CodeArray_t {
-	int* _codes;
-	unsigned int _size;
+	int* codes;
+	unsigned int size;
 }CodeArray_t;
+
+/**
+*@brief alloue la memoire d'un tableau de code
+*
+*@return un pointeur sur tableau de code
+*/
+CodeArray_t* allocateCodeArray();
+
+/**
+*@brief Destructeur de CodeArray
+*
+*@return le nombre de code libere
+*/
+unsigned int releaseCodeAray(CodeArray_t* caray);
 
 /**
 *@brief resume les codes dans codeArray

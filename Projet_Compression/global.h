@@ -13,7 +13,7 @@
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
 
-#define DIRY_MAX_SIZE 4096-256
+#define DIARY_MAX_SIZE 4096-256
 
 typedef int bool; 
 #define false  0 

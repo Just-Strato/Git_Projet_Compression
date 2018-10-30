@@ -85,7 +85,7 @@ CodeArray_t* lzwCoder(Dictionary_t* diary, const char* msg);
 *
 *@return l'indice du message si ajouter dans le dictionnaire, sinon NOT_INSIDE
 */
-int findOrAdddiary(Dictionary_t* diary, char* word, char c);
+int findOrAddWord(Dictionary_t* diary, char* word, char c);
 
 /**
 *@brief complete le dictionnaire et renvoit le message decode
@@ -97,7 +97,7 @@ int findOrAdddiary(Dictionary_t* diary, char* word, char c);
 *
 *@return le message obtenu du tableau de code
 */
-char* lzwDecoder(Dictionary_t* diary, const CodeArray_t* codeArray);
+void lzwDecoder(Dictionary_t* diary, const CodeArray_t* codeArray);
 
 
 #endif
