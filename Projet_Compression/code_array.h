@@ -31,7 +31,7 @@ CodeArray_t* allocateCodeArray();
 *
 *@return le nombre de code libere
 */
-unsigned int releaseCodeAray(CodeArray_t* caray);
+unsigned int releaseCodeArray(CodeArray_t* caray);
 
 /**
 *@brief resume les codes dans codeArray
