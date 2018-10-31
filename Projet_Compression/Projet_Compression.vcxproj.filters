@@ -15,7 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="tools.c">
+    <ClCompile Include="lzw_coder.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Bytes.c">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="code_array.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

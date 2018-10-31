@@ -19,4 +19,7 @@ typedef int bool;
 #define false  0 
 #define true  1
 
+#define DEFAULT_CODE_SIZE 100	//nombre par défaut de code, si dépassé ajoute ce nombre
+								// de code en plus 
+
 #endif

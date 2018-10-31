@@ -17,6 +17,7 @@
 typedef struct CodeArray_t {
 	int* codes;
 	unsigned int size;
+	unsigned int capacity;
 }CodeArray_t;
 
 /**
@@ -27,18 +28,20 @@ typedef struct CodeArray_t {
 CodeArray_t* allocateCodeArray();
 
 /**
-*@brief Destructeur de CodeArray
+*@brief ajoute un code au tableau tout en créant de l'espace 
+*si nécessaire
 *
-*@return le nombre de code libere
+*@param CodeArray_t* caray la structure de code
+*@param const int code le code à ajouter
+@return l'indice du code ajouté
 */
-unsigned int releaseCodeArray(CodeArray_t* caray);
-
+unsigned int addCode(CodeArray_t* caray, const int code);
 /**
 *@brief resume les codes dans codeArray
 *
 *@param const CodeArray_t* codeArray le tableau a resume
 *@return une chaine avec le resume
 */
-char* summaryCodeArray(const CodeArray_t* codeArray);
+char* summaryCodeArray(const CodeArray_t* caray);
 
 #endif

@@ -115,8 +115,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="code_array.cpp" />
     <ClCompile Include="lzw_coder.cpp" />
-    <ClCompile Include="tools.c" />
+    <ClCompile Include="Bytes.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bytes.h" />
