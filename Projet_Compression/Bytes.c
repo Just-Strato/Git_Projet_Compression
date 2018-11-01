@@ -94,7 +94,7 @@ ByteTripletArray_t* compressCode(const CodeArray_t* caray) {
 
 	/*On initialise le nombre d'octets, avec 3 octets par couples d'entiers*/
 	bytray->size = caray->size / 2;
-	bytray->array = (ByteTriplet_t*)malloc(bytray->size * sizeof(ByteTriplet_t));
+	bytray->array = (ByteTriplet_t*)malloc(bytray->size * sizeof(ByteTriplet_t)); assert(bytray->array != NULL);
 
 	for (k = 0; k < caray->size; k++) {
 		writeByteTriplet(bytray->array[k], bytray->array[k + 1], bytray->array[k + 2],
@@ -106,12 +106,14 @@ ByteTripletArray_t* compressCode(const CodeArray_t* caray) {
 
 CodeArray_t* uncompressCode(const ByteTripletArray_t *bytray) {
 
-	int unsigned k;
-	CodeArray_t* caray = (CodeArray_t*)malloc(sizeof(CodeArray_t)); assert(caray != NULL);
+	int unsigned k, x, y;
+	CodeArray_t* caray = allocateCodeArray();
  
     for(k = 0; k < bytray->size; k++) {
         recoverByteTriplet(bytray->array[k][0], bytray->array[k][1], bytray->array[k][2],
-			caray->codes + k * 2, caray->codes + ((k*2))+1);
+			x, y);
+		addCode(caray, x);
+		addCode(caray, y);
     }
 
     /*nombre de code en fonction du nombre de triples (1 triples -> 2 codes)*/

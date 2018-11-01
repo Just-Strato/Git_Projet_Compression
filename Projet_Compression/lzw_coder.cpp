@@ -117,7 +117,7 @@ CodeArray_t* lzwCoder(Dictionary_t* diary, const char* msg) {
 
 			//on recupère le code de S
 			if (strcmp(s, ""))
-				caray->codes[caray->size++] = findWord(diary, s);
+				addCode(caray, findWord(diary, s));
 
 			//S devient C
 			s[0] = c;
@@ -127,12 +127,12 @@ CodeArray_t* lzwCoder(Dictionary_t* diary, const char* msg) {
 	}
 
 	if (strcmp(s, ""))
-		caray->codes[caray->size++] = findWord(diary, s);
+		addCode(caray, findWord(diary, s));
 
 	/*Si le nombre de code est impair, alors il ne sera pas possible de mettre 2 entiers par triplés d'octet,
 	on crée alors un code suplémentaire égale à 0 qui sera retiré lors du décodage*/
 	if ((caray->size % 2) != 0)
-		caray->codes[caray->size++] = 0;
+		addCode(caray, 0);
 
 	return caray;
 
