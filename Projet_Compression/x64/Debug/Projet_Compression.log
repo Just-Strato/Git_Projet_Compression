@@ -1,0 +1,4 @@
+﻿  bytes_array.c
+bytes_array.obj : error LNK2019: symbole externe non résolu allocateCodeArray référencé dans la fonction uncompressCode
+bytes_array.obj : error LNK2019: symbole externe non résolu addCode référencé dans la fonction uncompressCode
+C:\Users\Just-Strato\Documents\Visual Studio 2017\Git_Project\Git_Projet_Compression\x64\Debug\Projet_Compression.exe : fatal error LNK1120: 2 externes non résolus

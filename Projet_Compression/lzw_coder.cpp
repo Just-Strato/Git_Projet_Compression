@@ -1,4 +1,6 @@
+#include "global.h"
 #include "lzw_coder.h"
+
 
 Dictionary_t* allocatediary() {
 

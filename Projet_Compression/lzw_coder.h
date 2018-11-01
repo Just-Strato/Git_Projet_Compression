@@ -5,7 +5,8 @@
 #ifndef DEF_CODAGE
 #define DEF_CODAGE
 
-#include"global.h"
+#include <stdio.h>
+#include"bytes_array.h"
 
 /**
 * @struct Dictionary_t

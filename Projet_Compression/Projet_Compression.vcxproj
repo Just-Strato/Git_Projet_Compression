@@ -117,10 +117,11 @@
   <ItemGroup>
     <ClCompile Include="code_array.cpp" />
     <ClCompile Include="lzw_coder.cpp" />
-    <ClCompile Include="Bytes.c" />
+    <ClCompile Include="bytes_array.c" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bytes.h" />
+    <ClInclude Include="bytes_array.h" />
     <ClInclude Include="code_array.h" />
     <ClInclude Include="lzw_coder.h" />
     <ClInclude Include="global.h" />

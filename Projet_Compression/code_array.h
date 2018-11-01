@@ -5,7 +5,7 @@
 #ifndef DEF_LIST
 #define DEF_LIST
 
-#include"stdio.h"
+#include <stdio.h>
 
 /**
 *@struct CodeArray_t
@@ -15,7 +15,7 @@
 *pour recevoir un tableau de size entier
 */
 typedef struct CodeArray_t {
-	int* codes;
+	unsigned int* codes;
 	unsigned int size;
 	unsigned int capacity;
 }CodeArray_t;

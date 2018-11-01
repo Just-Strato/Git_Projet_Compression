@@ -1,6 +1,8 @@
 #ifndef DEF_BYTE
 #define DEF_BYTE
-#include "global.h"
+
+#include <stdio.h>
+#include "code_array.h"
 
 /**
 *byte type definition

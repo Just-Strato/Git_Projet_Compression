@@ -1,4 +1,5 @@
 #include "global.h"
+#include "bytes_array.h"
 
 void displayByte(
 	const Byte_t Oc ,
@@ -111,7 +112,7 @@ CodeArray_t* uncompressCode(const ByteTripletArray_t *bytray) {
  
     for(k = 0; k < bytray->size; k++) {
         recoverByteTriplet(bytray->array[k][0], bytray->array[k][1], bytray->array[k][2],
-			x, y);
+			&x, &y);
 		addCode(caray, x);
 		addCode(caray, y);
     }
