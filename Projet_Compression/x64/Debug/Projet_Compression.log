@@ -1,4 +1,12 @@
 ﻿  bytes_array.c
-bytes_array.obj : error LNK2019: symbole externe non résolu allocateCodeArray référencé dans la fonction uncompressCode
-bytes_array.obj : error LNK2019: symbole externe non résolu addCode référencé dans la fonction uncompressCode
-C:\Users\Just-Strato\Documents\Visual Studio 2017\Git_Project\Git_Projet_Compression\x64\Debug\Projet_Compression.exe : fatal error LNK1120: 2 externes non résolus
+  code_array.c
+  lzw_coder.c
+c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\lzw_coder.c(60): warning C4267: '=' : conversion de 'size_t' en 'int', perte possible de données
+c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\lzw_coder.c(80): warning C4267: '+=' : conversion de 'size_t' en 'unsigned int', perte possible de données
+c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\lzw_coder.c(108): warning C4267: '=' : conversion de 'size_t' en 'unsigned int', perte possible de données
+c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\lzw_coder.c(97): warning C4267: 'initialisation' : conversion de 'size_t' en 'unsigned int', perte possible de données
+c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\lzw_coder.c(145): warning C4267: 'initialisation' : conversion de 'size_t' en 'int', perte possible de données
+c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\lzw_coder.c(183): warning C4267: '+=' : conversion de 'size_t' en 'unsigned int', perte possible de données
+  main.c
+  Génération de code en cours...
+  Projet_Compression.vcxproj -> C:\Users\Just-Strato\Documents\Visual Studio 2017\Git_Project\Git_Projet_Compression\x64\Debug\Projet_Compression.exe

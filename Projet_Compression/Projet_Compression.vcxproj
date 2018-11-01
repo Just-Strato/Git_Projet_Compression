@@ -115,10 +115,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="code_array.cpp" />
-    <ClCompile Include="lzw_coder.cpp" />
     <ClCompile Include="bytes_array.c" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="code_array.c" />
+    <ClCompile Include="lzw_coder.c" />
+    <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bytes_array.h" />
