@@ -1,2 +1,4 @@
-﻿  code_array.c
+﻿  main.c
+c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\main.c(15): warning C4133: 'fonction' : types incompatibles - de 'Dictionary_t *' à 'const CodeArray_t *'
+c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\main.c(9): warning C4305: 'initialisation' : troncation de 'int' à 'Byte_t'
   Projet_Compression.vcxproj -> C:\Users\Just-Strato\Documents\Visual Studio 2017\Git_Project\Git_Projet_Compression\x64\Debug\Projet_Compression.exe
