@@ -28,6 +28,12 @@ typedef struct CodeArray_t {
 CodeArray_t* allocateCodeArray();
 
 /**
+*@brief libère la mémoire d'un CodeArray_t
+*
+*/
+void releaseCodeArray(CodeArray_t* caray);
+
+/**
 *@brief ajoute un code au tableau tout en créant de l'espace 
 *si nécessaire
 *

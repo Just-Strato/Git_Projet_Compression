@@ -97,10 +97,9 @@ ByteTripletArray_t* compressCode(const CodeArray_t* caray) {
 	bytray->size = caray->size / 2;
 	bytray->array = (ByteTriplet_t*)malloc(bytray->size * sizeof(ByteTriplet_t)); assert(bytray->array != NULL);
 
-	for (k = 0; k < caray->size; k++) {
-		writeByteTriplet(bytray->array[k], bytray->array[k + 1], bytray->array[k + 2],
+	for (k = 0; k < caray->size; k++)
+		writeByteTriplet(bytray->array[k], bytray->array[k]+1, bytray->array[k]+2,
 			caray->codes[k * 2], caray->codes[k * 2 + 1]);
-	}
 
 	return bytray;
 }

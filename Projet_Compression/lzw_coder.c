@@ -2,7 +2,7 @@
 #include "lzw_coder.h"
 
 
-Dictionary_t* allocatediary() {
+Dictionary_t* allocateDiary() {
 
 	Dictionary_t* diary = (Dictionary_t*)malloc(sizeof(Dictionary_t)); assert(diary != NULL);
 
@@ -14,7 +14,7 @@ Dictionary_t* allocatediary() {
 	return diary;
 }
 
-unsigned int releasediary(Dictionary_t* diary) {
+unsigned int releaseDiary(Dictionary_t* diary) {
 	static unsigned int i;
 
 	/*On libère tout les mots*/
@@ -31,18 +31,20 @@ unsigned int releasediary(Dictionary_t* diary) {
 }
 
 int findWord(const Dictionary_t* diary, const char* word) {
-	static unsigned int i;
+	unsigned int i;
 
 	/*Si c'est un caractère il est dans la table ASCI*/
 	if (strlen(word) == 1)
-		return 0;
+		return *word;
 
 	/*Pour chaque mots on test l'équivalence*/
 	for (i = 0; i < diary->size; i++) {
 
-		/*Si egale ( donc strcmp retourne 0) */
-		if (!strcmp(diary->words[i], word))
-			return i;
+		/*Si egale ( donc strcmp retourne 0) alors
+		on retourne l'indice + 256 (table ASCII) */
+		if (!strcmp(diary->words[i], word)) {
+			return i+256;
+		}
 	}
 
 	/*Si on est arrivé la, alors on a pas trouvé la valeur dans le tableau*/
@@ -70,19 +72,21 @@ int addWord(Dictionary_t* diary, const char* word) {
 	return diary->size - 1;
 }
 
-char* summarydiary(const Dictionary_t* diary) {
+char* summaryDiary(const Dictionary_t* diary) {
 	char* sary;
 	static unsigned int size = 0, i;
 
 	/*On calcule la taille du résumé en additionnant chaque carac de chaque mot
 	+1 pour un retour chariot*/
 	for (i = 0; i < diary->size; i++)
-		size += strlen(diary->words[i] + 1);
+		size += strlen(diary->words[i])+1;
 
 	/*Le fameux \0 et permettre de mettre \n dans la boucle*/
 	size+=2;
 
 	sary = (char*)malloc(size * sizeof(char));
+
+	strcpy_s(sary, sizeof(sary), "");
 
 	for (i = 0; i < diary->size; i++) {
 		strcat_s(sary, size, diary->words[i]);

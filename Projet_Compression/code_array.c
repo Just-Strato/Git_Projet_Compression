@@ -4,11 +4,18 @@
 
 CodeArray_t* allocateCodeArray() {
 
-	CodeArray_t* caray = (CodeArray_t*)malloc(DEFAULT_CODE_SIZE * sizeof(unsigned int)); assert(caray != NULL);
+	CodeArray_t* caray = (CodeArray_t*)malloc(sizeof(CodeArray_t)); assert(caray != NULL);
+	caray->codes = (unsigned int*)malloc(DEFAULT_CODE_SIZE * sizeof(unsigned int)); assert(caray != NULL);
 	caray->size = 0;
 	caray->capacity = DEFAULT_CODE_SIZE;
 
 	return caray;
+}
+
+void releaseCodeArray(CodeArray_t* caray) {
+
+	free(caray->codes);
+	free(caray);
 }
 
 unsigned int addCode(CodeArray_t* caray, const int code) {
@@ -33,23 +40,24 @@ char* summaryCodeArray(const CodeArray_t* caray) {
 	for (i = 0; i < caray->size; i++)
 		size += sprintf_s(str, sizeof(str), "%d, ", caray->codes[i]);
 
-	/*'{', ']', fameux \0 et permettre de mettre \n dans la boucle*/
+	/*'{', ']', fameux \0 et permettre de mettre \n*/
 	size += 4;
 
-	sary = (char*)malloc(size * sizeof(char));
-	strcpy_s(str, sizeof(str), "{");
+	sary = (char*)malloc(size * sizeof(char)); assert(sary != NULL);
+	strcpy_s(sary, size, "{");
 
-	for (i = 0; i < caray->size; i++) {
+	for (i = 1; i <= caray->size; i++) {
 
 		if (i % 7 == 0)
-			sprintf_s(str, sizeof(str), "%d,\n", caray->codes[i]);
+			sprintf_s(str, sizeof(str), "%d,\n", caray->codes[i-1]);
 		else
-			sprintf_s(str, sizeof(str), "%d, ", caray->codes[i]);
+			sprintf_s(str, sizeof(str), "%d, ", caray->codes[i-1]);
 
 		strcat_s(sary, size, str);
 	}
 
-	strcat_s(sary, size, "}\n");
+	sary[strlen(sary) - 2] = '}';
+	sary[strlen(sary) - 1] = '\n';
 
 	return sary;
 }

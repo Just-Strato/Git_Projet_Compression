@@ -27,21 +27,21 @@ typedef struct {
 *
 *@return un pointeur sur dictionnaire
 */
-Dictionary_t* allocatediary();
+Dictionary_t* allocateDiary();
 
 /**
 *@brief Destructeur de Dictionnaire
 *
 *@return le nombre de mot libere
 */
-unsigned int releasediary(Dictionary_t* diary);
+unsigned int releaseDiary(Dictionary_t* diary);
 
 /**
 *@brief cherche la chaine dans le dictionnaire
 *
 *@param const Dictionary_t* le dictionnaire
 *@param const char* str la chaine a chercher
-*@return l'indice de l'element sinon NOT_INSIDE
+*@return l'indice de l'element dans le dictionnaire sinon NOT_INSIDE
 */
 int findWord(const Dictionary_t* diary, const char* word);
 
@@ -62,7 +62,7 @@ int addWord(Dictionary_t* diary, const char* word);
 *@param Dictionary_t* diary le dictionnaire a  resume
 @return une chaine contenant le resume
 */
-char* summarydiary(const Dictionary_t* diary);
+char* summaryDiary(const Dictionary_t* diary);
 
 /**
 *@brief complete le dictionnaire et renvoit un tableau de code
