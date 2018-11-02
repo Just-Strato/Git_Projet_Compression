@@ -30,7 +30,7 @@ int server(const char* msg, const Byte_t key) {
 
 	printf("Encrypting the code ...\n");
 	encryDecryByteTripletArray(bytray, key);
-	printf("Code Encrypted.");
+	printf("Code Encrypted.\n");
 	
 	printf("Sending to the client ...\n");
 	write(pipe_data[1], bytray, sizeof(bytray));
@@ -38,7 +38,7 @@ int server(const char* msg, const Byte_t key) {
 
 	printf("Waiting for client's Confirmation ...\n");
 	wait(NULL);
-	printf("Confirmation received. \n");
+	printf("Confirmation received.\n");
 
 	releaseDiary(diary);
 	releaseCodeArray(caray);
@@ -99,7 +99,7 @@ int main(int argc, char* argv[]) {
 	Byte_t key;
 
 	/*On vérifie que le tube est bien crée*/
-	assert(pipe(pipe_data) != 0);
+	assert(pipe(pipe_data) == 0);
 
 	/*On vérifie que le fils est bien crée*/
 	assert((pid_son = fork()) != -1);
@@ -115,7 +115,7 @@ int main(int argc, char* argv[]) {
 
 		/*Définition de la clef de cryptage*/
 		if (argc >= 3)
-			key = strol(argv[2], NULL, 10);
+			key = atoi(argv[2]);
 		else
 			key = 0b10100101;
 

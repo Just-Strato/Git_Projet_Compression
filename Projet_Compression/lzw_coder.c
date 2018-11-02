@@ -64,7 +64,7 @@ int addWord(Dictionary_t* diary, const char* word) {
 	/*str aura autant de caractere que word +1 pour le '\0'*/
 	str = (char*)malloc(size * sizeof(char)); assert(str != NULL);
 
-	strcpy_s(str, size, word);
+	strcpy(str, word);
 
 	/*on ajoute le mot au bout du dictionnaire et on incrémente la taille*/
 	diary->words[diary->size++] = str;
@@ -86,11 +86,11 @@ char* summaryDiary(const Dictionary_t* diary) {
 
 	sary = (char*)malloc(size * sizeof(char));
 
-	strcpy_s(sary, sizeof(sary), "");
+	strcpy(sary, "");
 
 	for (i = 0; i < diary->size; i++) {
-		strcat_s(sary, size, diary->words[i]);
-		strcat_s(sary, size, "\n");
+		strcat(sary, diary->words[i]);
+		strcat(sary, "\n");
 	}
 
 	return sary;

@@ -3,7 +3,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <cstdlib>
+#include <unistd.h>
+#include <sys/wait.h>
 #include <assert.h>
 #include <string.h>
 

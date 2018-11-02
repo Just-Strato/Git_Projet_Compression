@@ -38,22 +38,22 @@ char* summaryCodeArray(const CodeArray_t* caray) {
 	/*On calcule la taille du résumé en additionnant chaque carac de chaque entié
 	 pour un retour chariot*/
 	for (i = 0; i < caray->size; i++)
-		size += sprintf_s(str, sizeof(str), "%d, ", caray->codes[i]);
+		size += sprintf(str, "%d, ", caray->codes[i]);
 
 	/*'{', ']', fameux \0 et permettre de mettre \n*/
 	size += 4;
 
 	sary = (char*)malloc(size * sizeof(char)); assert(sary != NULL);
-	strcpy_s(sary, size, "{");
+	strcpy(sary, "{");
 
 	for (i = 1; i <= caray->size; i++) {
 
 		if (i % 7 == 0)
-			sprintf_s(str, sizeof(str), "%d,\n", caray->codes[i-1]);
+			sprintf(str, "%d,\n", caray->codes[i-1]);
 		else
-			sprintf_s(str, sizeof(str), "%d, ", caray->codes[i-1]);
+			sprintf(str, "%d, ", caray->codes[i-1]);
 
-		strcat_s(sary, size, str);
+		strcat(sary, str);
 	}
 
 	sary[strlen(sary) - 2] = '}';

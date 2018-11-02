@@ -23,7 +23,7 @@ Byte_t readByte() {
   int c;
 
   printf( "un octet : " );
-  scanf_s( " %d" , &c );
+  scanf( " %d" , &c );
 
   // les seules valeurs possibles pour un octet
   assert( -1 < c && c < 256 );
