@@ -98,10 +98,17 @@ char* summaryDiary(const Dictionary_t* diary) {
 
 CodeArray_t* lzwCoder(Dictionary_t* diary, const char* msg) {
 
-	int unsigned code = 0, k, lgth, msgSize = strlen(msg);
+	int unsigned code = 0, k, lgth, msgSize = strlen(msg), initDiary=0;
 
 
 	CodeArray_t* caray = allocateCodeArray(); assert(caray != NULL);
+
+	/*Si NULL est entrée à la place du dictionnaire, on l'initialise
+	et on le libère*/
+	if (diary == NULL) {
+		initDiary++;
+		diary = allocateDiary();
+	}
 
 	/** Dans le pire des cas s atteindra la taille 
 			du nombre de motdans le dico*/
@@ -135,10 +142,9 @@ CodeArray_t* lzwCoder(Dictionary_t* diary, const char* msg) {
 	if (strcmp(s, ""))
 		addCode(caray, findWord(diary, s));
 
-	/*Si le nombre de code est impair, alors il ne sera pas possible de mettre 2 entiers par triplés d'octet,
-	on crée alors un code suplémentaire égale à 0 qui sera retiré lors du décodage*/
-	if ((caray->size % 2) != 0)
-		addCode(caray, 0);
+	/*on libère le dictionnaire si initialisé dans la fonction*/
+	if (initDiary)
+		releaseDiary(diary);
 
 	return caray;
 
@@ -169,8 +175,15 @@ int findOrAddWord(Dictionary_t* diary, char* word, char c) {
 void lzwDecoder(Dictionary_t* diary, const CodeArray_t* caray) {
 
 	char* word;
-	char s[DIARY_MAX_SIZE] = "\0";
-	unsigned int c, k, i, lgth = 0;
+	char s[DIARY_MAX_SIZE] = { '\0' };
+	unsigned int c, k, i, initDiary = 0, size;
+
+	/*Si NULL est entrée à la place du dictionnaire, on l'initialise
+	et on le libère*/
+	if (diary == NULL) {
+		initDiary++;
+		diary = allocateDiary();
+	}
 
 	for (k = 0; k < caray->size; k++) {
 
@@ -179,18 +192,21 @@ void lzwDecoder(Dictionary_t* diary, const CodeArray_t* caray) {
 		if (c < 256) {
 			printf("%c", c);
 			findOrAddWord(diary, s, c);
-			lgth++;
 		}
 
 		else {
 			word = diary->words[c - 256];
-			lgth += strlen(word);
 
-			for (i = 0; i < strlen(word); i++) {
+			size = strlen(word);
+
+			for (i = 0; i < size; i++) {
 				printf("%c", word[i]);
 				findOrAddWord(diary, s, word[i]);
 			}
 		}
 	}
-	printf("\nMessage Original de longueur %d\n", lgth);
+
+	/*Libération du Dico initialisé dans la fonction*/
+	if (initDiary)
+		releaseDiary(diary);
 }

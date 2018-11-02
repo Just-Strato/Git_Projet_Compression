@@ -103,7 +103,7 @@ void recoverByteTriplet(Byte_t a, Byte_t b, Byte_t c, int *x, int *y);
 *@brief ecrire par deux les entiers du tableau dans
 *code sur 3 octets et retourne le tableau d'octets tabTripless
 */
-ByteTripletArray_t* compressCode(const CodeArray_t* caray);
+ByteTripletArray_t* compressCode(CodeArray_t* caray);
 
 /**
 *
