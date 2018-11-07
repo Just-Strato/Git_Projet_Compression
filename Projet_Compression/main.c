@@ -5,6 +5,7 @@
 
 int pid_son;
 int pipe_data[2];
+int sign = SIGNAL;
 
 int server(const char* msg, const Byte_t key) {
 
@@ -32,17 +33,19 @@ int server(const char* msg, const Byte_t key) {
 	encryDecryByteTripletArray(bytray, key);
 	printf("Code Encrypted.\n");
 	
-	printf("Sending to the client ...\n");
-	write(pipe_data[1], bytray, sizeof(bytray));
+	printf("Signal to the client ...\n");
+	write(pipe_data[1], sign, sizeof(sign));
 	printf("Send.\n");
 
-	printf("Waiting for client's Confirmation ...\n");
+	printf("Waiting for client's Decrypt Confirmation ...\n");
 	wait(NULL);
 	printf("Confirmation received.\n");
 
+	shmdt(bytray->array);
+	shmdt(bytray);
+
 	releaseDiary(diary);
 	releaseCodeArray(caray);
-	releaseByteTripletArray(bytray);
 	free(sumD);
 	free(sumC);
 
@@ -52,6 +55,7 @@ int server(const char* msg, const Byte_t key) {
 int client(Byte_t key) {
 
 	printf("Client beginning ...\n");
+	sleep(1);
 
 	/*Fermeture de l'entrée dans le fils*/
 	close(pipe_data[1]);
@@ -64,9 +68,19 @@ int client(Byte_t key) {
 
 	char *sumD, *sumC;
 
-	printf("Receptionning Server's Data ...\n");
-	read(pipe_data[0], bytray, sizeof(bytray));
-	printf("Server's Data received.\n");
+	printf("Receptionning Server's Signal ...\n");
+	read(pipe_data[0], sign, sizeof(sign));
+	printf("Server's Signal received.\n");
+
+	int byte_mem, byteArray_mem;
+
+	byteArray_mem = shmget(BYTE_TRIPLET_MEM_KEY, sizeof(ByteTripletArray_t), IPC_CREAT | 0666); assert(byteArray_mem != -1);
+	bytray = (ByteTripletArray_t*)shmat(byte_mem, NULL, 0); assert((int)bytray != -1);
+
+	byte_mem = shmget(BYTE_TRIPLET_MEM_KEY, bytray->size * sizeof(ByteTriplet_t)
+		, IPC_CREAT | 0666); assert(byte_mem != -1);
+
+	bytray->array = (ByteTriplet_t*)shmat(byte_mem, NULL, 0); assert((int)bytray->array != -1);
 
 	printf("Decrypting Code ...\n");
 	encryDecryByteTripletArray(bytray, key);
@@ -82,6 +96,9 @@ int client(Byte_t key) {
 
 	printf("%s\n", sumD = summaryDiary(diary));
 	printf("%s\n", sumC = summaryCodeArray(caray));
+
+	shmdt(bytray->array);
+	shmdt(bytray);
 
 	releaseDiary(diary);
 	releaseCodeArray(caray);
@@ -126,6 +143,5 @@ int main(int argc, char* argv[]) {
 		client(key);
 	}
 
-	system("pause");
 	return EXIT_SUCCESS;
 }

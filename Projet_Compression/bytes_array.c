@@ -91,7 +91,11 @@ void recoverByteTriplet(Byte_t a, Byte_t b, Byte_t c, int *x, int *y)
 ByteTripletArray_t* compressCode(CodeArray_t* caray) {
 
 	int unsigned k;
-	ByteTripletArray_t* bytray = (ByteTripletArray_t *)malloc(sizeof(ByteTripletArray_t)); assert(bytray != NULL);
+	int byte_mem, byteArray_mem;
+	ByteTripletArray_t* bytray;
+	
+	byteArray_mem = shmget(BYTE_TRIPLET_MEM_KEY, sizeof(ByteTripletArray_t), IPC_CREAT | 0666); assert(byteArray_mem != -1);
+	bytray = (ByteTripletArray_t*)shmat(byte_mem, NULL, 0); assert((int)bytray != -1);
 
 	/*Si le nombre de code est impair, alors il ne sera pas possible de mettre 2 entiers par triplés d'octet,
 	on crée alors un code suplémentaire égale à 0 qui sera retiré lors du décodage*/
@@ -100,7 +104,11 @@ ByteTripletArray_t* compressCode(CodeArray_t* caray) {
 
 	/*On initialise le nombre d'octets, avec 3 octets par couples d'entiers*/
 	bytray->size = caray->size / 2;
-	bytray->array = (ByteTriplet_t*)malloc(bytray->size * sizeof(ByteTriplet_t)); assert(bytray->array != NULL);
+
+	byte_mem = shmget(BYTE_TRIPLET_MEM_KEY, bytray->size * sizeof(ByteTriplet_t)
+		, IPC_CREAT | 0666); assert((int)byte_mem != -1);
+
+	bytray->array = (ByteTriplet_t*)shmat(byte_mem, NULL, 0); assert(bytray->array != -1);
 
 	for (k = 0; k < bytray->size; k++)
 		writeByteTriplet(&(bytray->array[k][0]), &(bytray->array[k][1]), &(bytray->array[k][2]),
@@ -133,7 +141,7 @@ CodeArray_t* uncompressCode(const ByteTripletArray_t *bytray) {
 }
 
 void releaseByteTripletArray(ByteTripletArray_t *bytray) {
-    //free(bytray->array);
+    free(bytray->array);
     free(bytray);
 }
 
