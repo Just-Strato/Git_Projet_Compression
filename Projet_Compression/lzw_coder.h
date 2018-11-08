@@ -74,7 +74,7 @@ char* summaryDiary(const Dictionary_t* diary);
 *
 *@return la liste de code realise
 */
-CodeArray_t* lzwCoder(Dictionary_t* diary, const char* msg);
+void lzwCoder(Dictionary_t* diary, const char* msg, Byte_t key);
 
 /**
 *@brief si la chaine avec le caractere est dans le dico on passe

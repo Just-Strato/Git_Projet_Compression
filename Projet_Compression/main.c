@@ -1,10 +1,6 @@
 #include "global.h"
-#include "bytes_array.h"
-#include "code_array.h"
+#include "bytes.h"
 #include "lzw_coder.h"
-
-int pid_son;
-int pipe_data[2];
 
 int server(const char* msg, const Byte_t key) {
 
@@ -13,16 +9,13 @@ int server(const char* msg, const Byte_t key) {
 	/*Fermeture de la sortie dans le père*/
 	close(pipe_data[0]);
 
-	char *sumD, *sumC;
-
-	Dictionary_t* diary = allocateDiary();
+	char *sumD;
 
 	printf("Code by using message ...\n");
 	CodeArray_t* caray = lzwCoder(diary, msg);
 	printf("Code made.\n");
 	
 	printf("%s\n", sumD = summaryDiary(diary));
-	printf("%s\n", sumC = summaryCodeArray(caray));
 
 	printf("Compressing the code ... \n");
 	ByteTripletArray_t* bytray = compressCode(caray);

@@ -19,5 +19,7 @@
 
 #define DEFAULT_CODE_SIZE 100	//nombre par défaut de code, si dépassé ajoute ce nombre
 								// de code en plus 
+int pid_son;
+int pipe_data[2];
 
 #endif

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "lzw_coder.h"
+#include "bytes.h"
 
 
 Dictionary_t* allocateDiary() {
@@ -96,12 +97,10 @@ char* summaryDiary(const Dictionary_t* diary) {
 	return sary;
 }
 
-CodeArray_t* lzwCoder(Dictionary_t* diary, const char* msg) {
+void lzwCoder(Dictionary_t* diary, const char* msg, Byte_t key) {
 
-	int unsigned code = 0, k, lgth, msgSize = strlen(msg), initDiary=0;
-
-
-	CodeArray_t* caray = allocateCodeArray(); assert(caray != NULL);
+	int unsigned k, lgth, msgSize = strlen(msg), initDiary = 0;
+	int code[2] = { -1,-1 };
 
 	/*Si NULL est entrée à la place du dictionnaire, on l'initialise
 	et on le libère*/
@@ -130,7 +129,7 @@ CodeArray_t* lzwCoder(Dictionary_t* diary, const char* msg) {
 
 			//on recupère le code de S
 			if (strcmp(s, ""))
-				addCode(caray, findWord(diary, s));
+				addSend(code, diary, s, key);
 
 			//S devient C
 			s[0] = c;
@@ -139,15 +138,14 @@ CodeArray_t* lzwCoder(Dictionary_t* diary, const char* msg) {
 		}
 	}
 
-	if (strcmp(s, ""))
-		addCode(caray, findWord(diary, s));
+	if (strcmp(s, "")) {
+		if (code[0] != -1)
+			secureSending(code[0], 0, key);
+	}
 
 	/*on libère le dictionnaire si initialisé dans la fonction*/
 	if (initDiary)
 		releaseDiary(diary);
-
-	return caray;
-
 }
 
 int findOrAddWord(Dictionary_t* diary, char* word, char c) {

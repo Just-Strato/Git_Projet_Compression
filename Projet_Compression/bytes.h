@@ -2,7 +2,6 @@
 #define DEF_BYTE
 
 #include <stdio.h>
-#include "code_array.h"
 
 /**
 *byte type definition
@@ -15,18 +14,6 @@ typedef unsigned char Byte_t;
 *
 */
 typedef Byte_t ByteTriplet_t[3];
-
-/**
-* @struct BytesTripletArray_t
-* @brief Tableau de triplet
-*
-*Represente un tableau comportant size
-*triple d'octet dans array 
-*/
-typedef struct {
-	ByteTriplet_t* array;
-	unsigned int size;
-}ByteTripletArray_t;
 
  /**
   * @brief afficher un octet au format binaire
@@ -97,37 +84,5 @@ void writeByteTriplet(Byte_t *a, Byte_t *b, Byte_t *c, int x, int y);
 * et dans quartet inferieur de b et c
 */
 void recoverByteTriplet(Byte_t a, Byte_t b, Byte_t c, int *x, int *y);
-
-/**
-*
-*@brief ecrire par deux les entiers du tableau dans
-*code sur 3 octets et retourne le tableau d'octets tabTripless
-*/
-ByteTripletArray_t* compressCode(CodeArray_t* caray);
-
-/**
-*
-*@brief retourne un t_code avec les valeurs compressees
-* dans tabTriples
-*/
-CodeArray_t* uncompressCode(const ByteTripletArray_t *bytray);
-
-/**
-*
-*@brief liberer la mémoire alloué d'un T_Triples Octet
-*/
-void releaseByteTripletArray(ByteTripletArray_t *bytray);
-
-/**
-*
-*@brief return chiffré ou dechiffré un octet à partir de la technique XOR avec une
-*clef qui sera entré en paramètre
-*/
-Byte_t encryDecryXOR(Byte_t byte, Byte_t key);
-
-/**
-*@brief chiffre ou dechiffrechaque octet d'un T_TriplesOctet avec XOR
-*/
-void encryDecryByteTripletArray(ByteTripletArray_t *bytray, const Byte_t clef);
 
 #endif
