@@ -85,4 +85,30 @@ void writeByteTriplet(Byte_t *a, Byte_t *b, Byte_t *c, int x, int y);
 */
 void recoverByteTriplet(Byte_t a, Byte_t b, Byte_t c, int *x, int *y);
 
+/**
+*
+*@brief crypte les bytes avec le système XOR
+*/
+Byte_t encryDecryXOR(Byte_t byte, Byte_t key);
+
+/**
+*
+*@brief crypte avec le système XOR tout les Bytes d'un ByteTriplet
+*/
+void byteTripletEncryDecryXOR(ByteTriplet_t bytes, int key);
+
+/**
+*
+*@brief compresse, crypte, et envoie les deux code x et y
+*/
+void secureSending(int x, int y, Byte_t key);
+
+/**
+*
+*@brief décompresse, décrypte, et récupère les deux code x et y
+*@return 0 si aucun code récupéré
+*/
+int secureReceiving(int *x, int *y, Byte_t key);
+
+
 #endif

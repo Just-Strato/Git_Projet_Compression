@@ -1,6 +1,6 @@
 #include "global.h"
-#include "lzw_coder.h"
 #include "bytes.h"
+#include "lzw_coder.h"
 
 
 Dictionary_t* allocateDiary() {
@@ -143,6 +143,9 @@ void lzwCoder(Dictionary_t* diary, const char* msg, Byte_t key) {
 			secureSending(code[0], 0, key);
 	}
 
+	/*Annonce la fin du codage*/
+	secureSending(0, 0, key);
+
 	/*on libère le dictionnaire si initialisé dans la fonction*/
 	if (initDiary)
 		releaseDiary(diary);
@@ -170,11 +173,12 @@ int findOrAddWord(Dictionary_t* diary, char* word, char c) {
 	return NOT_INSIDE;
 }
 
-void lzwDecoder(Dictionary_t* diary, const CodeArray_t* caray) {
+void lzwDecoder(Dictionary_t* diary, Byte_t key) {
 
 	char* word;
 	char s[DIARY_MAX_SIZE] = { '\0' };
 	unsigned int c, k, i, initDiary = 0, size;
+	int code[2];
 
 	/*Si NULL est entrée à la place du dictionnaire, on l'initialise
 	et on le libère*/
@@ -183,23 +187,25 @@ void lzwDecoder(Dictionary_t* diary, const CodeArray_t* caray) {
 		diary = allocateDiary();
 	}
 
-	for (k = 0; k < caray->size; k++) {
+	while (secureReceiving(code[0], code[1], key)) {
+		for (k = 0; k < 2; k++) {
 
-		c = caray->codes[k];
+			c = code[k];
 
-		if (c < 256) {
-			printf("%c", c);
-			findOrAddWord(diary, s, c);
-		}
+			if (c < 256) {
+				printf("%c", c);
+				findOrAddWord(diary, s, c);
+			}
 
-		else {
-			word = diary->words[c - 256];
+			else {
+				word = diary->words[c - 256];
 
-			size = strlen(word);
+				size = strlen(word);
 
-			for (i = 0; i < size; i++) {
-				printf("%c", word[i]);
-				findOrAddWord(diary, s, word[i]);
+				for (i = 0; i < size; i++) {
+					printf("%c", word[i]);
+					findOrAddWord(diary, s, word[i]);
+				}
 			}
 		}
 	}
@@ -207,4 +213,15 @@ void lzwDecoder(Dictionary_t* diary, const CodeArray_t* caray) {
 	/*Libération du Dico initialisé dans la fonction*/
 	if (initDiary)
 		releaseDiary(diary);
+}
+
+void addSend(int* code, const Dictionary_t* diary, const char* s, Byte_t key) {
+	if (code[0] == -1)
+		code[0] = findWord(diary, s);
+	else {
+		if (code[1] == -1)
+			code[1] = findWord(diary, s);
+		secureSending(code[0], code[1], key);
+		code[0] = -1; code[1] = -1;
+	}
 }

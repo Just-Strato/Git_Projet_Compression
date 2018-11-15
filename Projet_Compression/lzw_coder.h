@@ -5,8 +5,8 @@
 #ifndef DEF_CODAGE
 #define DEF_CODAGE
 
-#include <stdio.h>
-#include"bytes_array.h"
+#include "global.h"
+#include "bytes.h"
 
 /**
 * @struct Dictionary_t
@@ -98,7 +98,12 @@ int findOrAddWord(Dictionary_t* diary, char* word, char c);
 *
 *@return le message obtenu du tableau de code
 */
-void lzwDecoder(Dictionary_t* diary, const CodeArray_t* codeArray);
+void lzwDecoder(Dictionary_t* diary, Byte_t key);
 
+/**
+*
+*@brief ajoute au tableau de deux code ceux-ci, puis les envoies
+*/
+void addSend(int *code, const Dictionary_t *diary, const char *s, Byte_t key);
 
 #endif

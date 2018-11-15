@@ -1,6 +1,5 @@
 #include "global.h"
 #include "bytes.h"
-#include "lzw_coder.h"
 
 void displayByte(
 	const Byte_t Oc ,
@@ -113,7 +112,7 @@ void secureSending(int x, int y, Byte_t key) {
 	write(pipe_data[1], bytes, sizeof(ByteTriplet_t));
 }
 
-void secureReceiving(int *x, int *y, Byte_t key) {
+int secureReceiving(int *x, int *y, Byte_t key) {
 
 	ByteTriplet_t bytes;
 
@@ -122,17 +121,7 @@ void secureReceiving(int *x, int *y, Byte_t key) {
 	byteTripletEncryDecryXOR(bytes, key);
 
 	recoverByteTriplet(bytes[0], bytes[1], bytes[2], x, y);
+
+	return *x;
 }
 
-void addSend(int* code, const Dictionary_t* diary, const char* s, Byte_t key) {
-	if (code[0] == -1)
-		code[0] = findWord(diary, s);
-	else {
-		if(code[1] == -1)
-			code[1] = findWord(diary, s);
-		else {
-			secureSending(code[0], code[1], key);
-			code[0] = -1; code[1] = -1;
-		}
-	}
-}

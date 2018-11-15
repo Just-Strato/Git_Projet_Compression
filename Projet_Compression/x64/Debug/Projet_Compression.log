@@ -1,48 +1,7 @@
-﻿  bytes_array.c
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(19): error C2061: erreur de syntaxe : identificateur 'noexcept'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(19): error C2059: erreur de syntaxe : ';'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(20): error C2449: trouvé '{' au niveau de la portée du fichier (en-tête de fonction manquant ?)
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(22): error C2059: erreur de syntaxe : '}'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(29): error C2061: erreur de syntaxe : identificateur 'noexcept'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(29): error C2059: erreur de syntaxe : ';'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(30): error C2449: trouvé '{' au niveau de la portée du fichier (en-tête de fonction manquant ?)
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(32): error C2059: erreur de syntaxe : '}'
-  code_array.c
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(19): error C2061: erreur de syntaxe : identificateur 'noexcept'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(19): error C2059: erreur de syntaxe : ';'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(20): error C2449: trouvé '{' au niveau de la portée du fichier (en-tête de fonction manquant ?)
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(22): error C2059: erreur de syntaxe : '}'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(29): error C2061: erreur de syntaxe : identificateur 'noexcept'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(29): error C2059: erreur de syntaxe : ';'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(30): error C2449: trouvé '{' au niveau de la portée du fichier (en-tête de fonction manquant ?)
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(32): error C2059: erreur de syntaxe : '}'
+﻿  bytes.c
+c:\users\just-strato\documents\projet_git\git_projet_compression\projet_compression\global.h(6): fatal error C1083: Impossible d'ouvrir le fichier include : 'unistd.h' : No such file or directory
   lzw_coder.c
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(19): error C2061: erreur de syntaxe : identificateur 'noexcept'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(19): error C2059: erreur de syntaxe : ';'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(20): error C2449: trouvé '{' au niveau de la portée du fichier (en-tête de fonction manquant ?)
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(22): error C2059: erreur de syntaxe : '}'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(29): error C2061: erreur de syntaxe : identificateur 'noexcept'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(29): error C2059: erreur de syntaxe : ';'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(30): error C2449: trouvé '{' au niveau de la portée du fichier (en-tête de fonction manquant ?)
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(32): error C2059: erreur de syntaxe : '}'
-c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\lzw_coder.c(62): warning C4267: '=' : conversion de 'size_t' en 'int', perte possible de données
-c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\lzw_coder.c(82): warning C4267: '+=' : conversion de 'size_t' en 'unsigned int', perte possible de données
-c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\lzw_coder.c(119): warning C4267: '=' : conversion de 'size_t' en 'unsigned int', perte possible de données
-c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\lzw_coder.c(101): warning C4267: 'initialisation' : conversion de 'size_t' en 'unsigned int', perte possible de données
-c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\lzw_coder.c(155): warning C4267: 'initialisation' : conversion de 'size_t' en 'int', perte possible de données
-c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\lzw_coder.c(200): warning C4267: '=' : conversion de 'size_t' en 'unsigned int', perte possible de données
+c:\users\just-strato\documents\projet_git\git_projet_compression\projet_compression\global.h(6): fatal error C1083: Impossible d'ouvrir le fichier include : 'unistd.h' : No such file or directory
   main.c
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(19): error C2061: erreur de syntaxe : identificateur 'noexcept'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(19): error C2059: erreur de syntaxe : ';'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(20): error C2449: trouvé '{' au niveau de la portée du fichier (en-tête de fonction manquant ?)
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(22): error C2059: erreur de syntaxe : '}'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(29): error C2061: erreur de syntaxe : identificateur 'noexcept'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(29): error C2059: erreur de syntaxe : ';'
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(30): error C2449: trouvé '{' au niveau de la portée du fichier (en-tête de fonction manquant ?)
-d:\logiciels\visual studio\vc\tools\msvc\14.15.26726\include\cstdlib(32): error C2059: erreur de syntaxe : '}'
-c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\main.c(12): warning C4013: 'close' non défini(e) ; extern retournant int pris par défaut
-c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\main.c(41): error C2082: redéfinition du paramètre formel 'key'
-c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\main.c(70): warning C4013: 'pipe' non défini(e) ; extern retournant int pris par défaut
-c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\main.c(73): warning C4013: 'fork' non défini(e) ; extern retournant int pris par défaut
-c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\main.c(86): warning C4013: 'strol' non défini(e) ; extern retournant int pris par défaut
+c:\users\just-strato\documents\projet_git\git_projet_compression\projet_compression\global.h(6): fatal error C1083: Impossible d'ouvrir le fichier include : 'unistd.h' : No such file or directory
   Génération de code en cours...
