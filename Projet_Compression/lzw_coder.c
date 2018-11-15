@@ -128,8 +128,7 @@ void lzwCoder(Dictionary_t* diary, const char* msg, Byte_t key) {
 			s[lgth] = '\0';
 
 			//on recupère le code de S
-			if (strcmp(s, ""))
-				addSend(code, diary, s, key);
+			addSend(code, diary, s, key);
 
 			//S devient C
 			s[0] = c;
@@ -138,10 +137,9 @@ void lzwCoder(Dictionary_t* diary, const char* msg, Byte_t key) {
 		}
 	}
 
-	if (strcmp(s, "")) {
-		if (code[0] != -1)
-			secureSending(code[0], 0, key);
-	}
+	if (strcmp(s, "")) addSend(code, diary, s, key);
+
+	if (code[0] != -1) secureSending(code[0], 0, key);
 
 	/*Annonce la fin du codage*/
 	secureSending(0, 0, key);
@@ -208,6 +206,7 @@ void lzwDecoder(Dictionary_t* diary, Byte_t key) {
 			}
 		}
 	}
+	printf("\n\n");
 
 	/*Libération du Dico initialisé dans la fonction*/
 	if (initDiary)

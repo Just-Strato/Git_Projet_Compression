@@ -107,13 +107,9 @@ void secureSending(int x, int y, Byte_t key) {
 	if(bytes == NULL ) bytes = (Byte_t*)malloc(3 * sizeof(Byte_t));
 	assert(bytes != NULL);
 
-	//printf("%d %d\n", x, y);
-
 	writeByteTriplet(bytes, bytes+1, bytes+2, x, y);
 
 	byteTripletEncryDecryXOR(bytes, key);
-
-	//printf("%c %c %c\n", bytes[0], bytes[1], bytes[2]);
 
 	write(pipe_data[1], bytes, 3*sizeof(Byte_t));
 }
@@ -129,8 +125,6 @@ int secureReceiving(int *x, int *y, Byte_t key) {
 	byteTripletEncryDecryXOR(bytes, key);
 	
 	recoverByteTriplet(bytes[0], bytes[1], bytes[2], x, y);
-
-	printf("%d %d\n", *x, *y);
 
 	return *x;
 }

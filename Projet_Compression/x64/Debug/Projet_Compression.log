@@ -1,7 +1,7 @@
 ﻿  bytes.c
-c:\users\just-strato\documents\projet_git\git_projet_compression\projet_compression\global.h(6): fatal error C1083: Impossible d'ouvrir le fichier include : 'unistd.h' : No such file or directory
+c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\global.h(6): fatal error C1083: Impossible d'ouvrir le fichier include : 'unistd.h' : No such file or directory
   lzw_coder.c
-c:\users\just-strato\documents\projet_git\git_projet_compression\projet_compression\global.h(6): fatal error C1083: Impossible d'ouvrir le fichier include : 'unistd.h' : No such file or directory
+c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\global.h(6): fatal error C1083: Impossible d'ouvrir le fichier include : 'unistd.h' : No such file or directory
   main.c
-c:\users\just-strato\documents\projet_git\git_projet_compression\projet_compression\global.h(6): fatal error C1083: Impossible d'ouvrir le fichier include : 'unistd.h' : No such file or directory
+c:\users\just-strato\documents\visual studio 2017\git_project\git_projet_compression\projet_compression\global.h(6): fatal error C1083: Impossible d'ouvrir le fichier include : 'unistd.h' : No such file or directory
   Génération de code en cours...
