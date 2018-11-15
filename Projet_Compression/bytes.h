@@ -9,12 +9,6 @@
 */
 typedef unsigned char Byte_t;
 
-/**
-*definition du type triple d'octet
-*
-*/
-typedef Byte_t ByteTriplet_t[3];
-
  /**
   * @brief afficher un octet au format binaire
   * Entrées :
@@ -95,7 +89,7 @@ Byte_t encryDecryXOR(Byte_t byte, Byte_t key);
 *
 *@brief crypte avec le système XOR tout les Bytes d'un ByteTriplet
 */
-void byteTripletEncryDecryXOR(ByteTriplet_t bytes, int key);
+void byteTripletEncryDecryXOR(Byte_t* bytes, Byte_t key);
 
 /**
 *

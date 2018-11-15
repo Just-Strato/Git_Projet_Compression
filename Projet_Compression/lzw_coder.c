@@ -174,7 +174,6 @@ int findOrAddWord(Dictionary_t* diary, char* word, char c) {
 }
 
 void lzwDecoder(Dictionary_t* diary, Byte_t key) {
-
 	char* word;
 	char s[DIARY_MAX_SIZE] = { '\0' };
 	unsigned int c, k, i, initDiary = 0, size;
@@ -187,7 +186,7 @@ void lzwDecoder(Dictionary_t* diary, Byte_t key) {
 		diary = allocateDiary();
 	}
 
-	while (secureReceiving(code[0], code[1], key)) {
+	while (secureReceiving(&code[0], &code[1], key)) {
 		for (k = 0; k < 2; k++) {
 
 			c = code[k];

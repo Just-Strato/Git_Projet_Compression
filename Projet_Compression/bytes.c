@@ -93,7 +93,7 @@ Byte_t encryDecryXOR(Byte_t byte, Byte_t key) {
     return byte ^ key;
 }
 
-void byteTripletEncryDecryXOR(ByteTriplet_t bytes, int key) {
+void byteTripletEncryDecryXOR(Byte_t* bytes, Byte_t key) {
 	
 	static int k;
 
@@ -103,24 +103,34 @@ void byteTripletEncryDecryXOR(ByteTriplet_t bytes, int key) {
 
 void secureSending(int x, int y, Byte_t key) {
 
-	ByteTriplet_t bytes;
+	static Byte_t* bytes = NULL;
+	if(bytes == NULL ) bytes = (Byte_t*)malloc(3 * sizeof(Byte_t));
+	assert(bytes != NULL);
 
-	writeByteTriplet(&(bytes[0]), &(bytes[1]), &(bytes[2]), x, y);
+	//printf("%d %d\n", x, y);
+
+	writeByteTriplet(bytes, bytes+1, bytes+2, x, y);
 
 	byteTripletEncryDecryXOR(bytes, key);
 
-	write(pipe_data[1], bytes, sizeof(ByteTriplet_t));
+	//printf("%c %c %c\n", bytes[0], bytes[1], bytes[2]);
+
+	write(pipe_data[1], bytes, 3*sizeof(Byte_t));
 }
 
 int secureReceiving(int *x, int *y, Byte_t key) {
 
-	ByteTriplet_t bytes;
+	static Byte_t* bytes = NULL;
+	if (bytes == NULL) bytes = (Byte_t*)malloc(3 * sizeof(Byte_t));
+	assert(bytes != NULL);
 
-	read(pipe_data[0], bytes, sizeof(ByteTriplet_t));
+	read(pipe_data[0], bytes, 3*sizeof(Byte_t));
 
 	byteTripletEncryDecryXOR(bytes, key);
-
+	
 	recoverByteTriplet(bytes[0], bytes[1], bytes[2], x, y);
+
+	printf("%d %d\n", *x, *y);
 
 	return *x;
 }

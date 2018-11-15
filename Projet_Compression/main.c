@@ -17,7 +17,7 @@ int server(const char* msg, const Byte_t key) {
 	lzwCoder(diary, msg, key);
 	printf("Code made.\n");
 	
-	printf("%s\n", sumD = summaryDiary(diary));
+	//printf("%s\n", sumD = summaryDiary(diary));
 
 	printf("Waiting for client's Confirmation ...\n");
 	wait(NULL);
@@ -44,12 +44,12 @@ int client(Byte_t key) {
 	lzwDecoder(diary, key);
 	printf("Code Decoded.\n");
 
-	printf("%s\n", sumD = summaryDiary(diary));
+	//printf("%s\n", sumD = summaryDiary(diary));
 
 	releaseDiary(diary);
 	free(sumD);
 
-	printf("Confirmation send to server");
+	printf("Confirmation send to server\n");
 	return EXIT_SUCCESS;
 }
 
@@ -86,6 +86,5 @@ int main(int argc, char* argv[]) {
 		client(key);
 	}
 
-	system("pause");
 	return EXIT_SUCCESS;
 }
